@@ -31,15 +31,15 @@ function createAnimation() {
     window.animation = new Animation(field);
 }
 
-document.addEventListener("DOMContentLoaded", function (event) {
+document.addEventListener("DOMContentLoaded", function () {
     createCanvas();
     createAnimation();
 
-    document.getElementById('start').onclick = function (event) {
+    document.getElementById('start').onclick = function () {
         window.animation.start();
     };
 
-    document.getElementById('stop').onclick = function (event) {
+    document.getElementById('stop').onclick = function () {
         window.animation.stop();
     };
 });

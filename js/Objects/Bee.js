@@ -38,7 +38,6 @@ class Bee extends Movable {
         }
 
         if (this.targetName === this.hiveName || this.targetName === undefined) {
-            let min = 100000000;
             let targetName = targets.reduce((prev, curr) => {
                 return this.distances[prev] < this.distances[curr] && prev !== this.hiveName ? prev : curr;
             }, targets[0]);
