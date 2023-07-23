@@ -39,13 +39,12 @@ class Target extends Movable{
     render() {
         const ctx = document.getElementById("field").getContext("2d");
 
-        if (this.name === Config.hiveName()) {
-            let size = this.radius * 2;
-            ctx.drawImage(Images.get('beeHive'), 0, 0, 32, 32, this.x - this.radius, this.y - this.radius, size, size);
+        if (Config.withImages()) {
+            this.drawTargetWithImages(ctx);
         } else {
-            let size = this.radius * 2;
-            ctx.drawImage(Images.get('honeyComb'), 0, 0, 32, 32, this.x - this.radius, this.y - this.radius, size, size);
+            this.drawTarget(ctx);
         }
+
 
         let fontSize = 12;
         ctx.font = fontSize + "px serif";
@@ -58,23 +57,33 @@ class Target extends Movable{
         }
     }
 
+    drawTargetWithImages(ctx) {
+        if (this.name === Config.hiveName()) {
+            let size = this.radius * 2;
+            ctx.drawImage(Images.get('beeHive'), 0, 0, 32, 32, this.x - this.radius, this.y - this.radius, size, size);
+        } else {
+            let size = this.radius * 2;
+            ctx.drawImage(Images.get('honeyComb'), 0, 0, 32, 32, this.x - this.radius, this.y - this.radius, size, size);
+        }
+    }
+
     drawTarget(ctx) {
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.radius, 0, 2 * Math.PI, false);
 
-        if (this.name === 't1') {
+        if (this.name === 'h1') {
             ctx.fillStyle = "rgb(229,216,169)";
         }
-        if (this.name === 't2') {
+        if (this.name === 'h2') {
             ctx.fillStyle = "rgb(97,189,50)";
         }
-        if (this.name === 't3') {
+        if (this.name === 'h3') {
             ctx.fillStyle = "rgb(142,31,173)";
         }
-        if (this.name === 't4') {
+        if (this.name === 'h4') {
             ctx.fillStyle = "rgb(38,167,176)";
         }
-        if (this.name === 't5') {
+        if (this.name === 'h5') {
             ctx.fillStyle = "rgb(127,105,133)";
         }
 
