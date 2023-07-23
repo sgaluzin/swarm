@@ -44,4 +44,8 @@ class Config {
     static withImages() {
         return false;
     }
+
+    static isDebug() {
+        return true;
+    }
 }

@@ -28,6 +28,11 @@ h1, h2 {
     background: rgb(2, 116, 4);
 }
 
+#debug-info {
+    margin: 1rem auto;
+    text-align: center;
+}
+
 #footer a {
     color: #fff;
 }
