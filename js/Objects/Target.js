@@ -43,17 +43,36 @@ class Target extends Movable{
 
         ctx.beginPath();
         ctx.arc(this.x, this.y, radius, 0, 2 * Math.PI, false);
-        ctx.fillStyle = "rgba(150, 150, 150, 1)";
+
+        if (this.name === Config.hiveName()) {
+            ctx.fillStyle = "rgb(232,102,8)";
+        }
+        if (this.name === 't1') {
+            ctx.fillStyle = "rgb(229,216,169)";
+        }
+        if (this.name === 't2') {
+            ctx.fillStyle = "rgb(97,189,50)";
+        }
+        if (this.name === 't3') {
+            ctx.fillStyle = "rgb(142,31,173)";
+        }
+        if (this.name === 't4') {
+            ctx.fillStyle = "rgb(38,167,176)";
+        }
+        if (this.name === 't5') {
+            ctx.fillStyle = "rgb(127,105,133)";
+        }
+
         ctx.fill();
 
-        ctx.font = "12px serif";
-        ctx.fillStyle = "rgba(20, 20, 20, 1)";
-        ctx.fillText(this.name, this.x - 3, this.y);
+        let fontSize = 12;
+        ctx.font = fontSize + "px serif";
+        ctx.fillStyle = "rgba(255, 255, 255, 1)";
+        ctx.fillText(this.name, this.x, this.y + fontSize * 2);
 
         if (this.name !== 'hive') {
-            ctx.font = "12px serif";
-            ctx.fillStyle = "rgba(20, 20, 20, 1)";
-            ctx.fillText(this.health, this.x - 5, this.y + 5);
+            ctx.fillStyle = "rgba(255, 255, 255, 1)";
+            ctx.fillText(this.health, this.x, this.y + this.radius + fontSize * 3);
         }
     }
 }

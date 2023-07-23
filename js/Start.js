@@ -19,7 +19,7 @@ function createTarget(e) {
 }
 
 function createAnimation() {
-    let hive = new Target('hive', 50, 150);
+    let hive = new Target(Config.hiveName(), 50, 150);
 
 
     let swarm = new Swarm(hive);

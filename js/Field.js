@@ -54,7 +54,7 @@ class Field {
 
         ctx.clearRect(0, 0, this.width, this.height);
 
-        ctx.fillStyle = "rgba(50, 50, 50, 0.4)";
+        ctx.fillStyle = "rgb(3,72,2)";
         ctx.fillRect(0, 0, this.width, this.height);
 
         this.dynamics.forEach((object) => {
