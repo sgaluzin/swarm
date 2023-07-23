@@ -1,4 +1,4 @@
-class Target extends Movable{
+class Target extends Movable {
     name;
     health;
     radius = Config.targetRadius();
@@ -34,7 +34,7 @@ class Target extends Movable{
         super.move();
 
         this.checkBorders(borders);
-     }
+    }
 
     render() {
         const ctx = document.getElementById("field").getContext("2d");
@@ -71,6 +71,9 @@ class Target extends Movable{
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.radius, 0, 2 * Math.PI, false);
 
+        if (this.name === Config.hiveName()) {
+            ctx.fillStyle = "rgb(232,102,8)";
+        }
         if (this.name === 'h1') {
             ctx.fillStyle = "rgb(229,216,169)";
         }
