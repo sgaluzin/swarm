@@ -22,7 +22,7 @@ class Config {
     }
 
     static targetHealth() {
-        return 1000;
+        return 500;
     }
 
     static beeRandomAngle() {
@@ -39,5 +39,13 @@ class Config {
 
     static hiveName() {
         return 'hive';
+    }
+
+    static withImages() {
+        return false;
+    }
+
+    static isDebug() {
+        return true;
     }
 }

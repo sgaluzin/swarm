@@ -15,8 +15,12 @@ class Animation {
     }
 
     tick() {
+        Debug.takeTime()
+
         this.field.doActivities();
         this.field.render();
+
+        Debug.pushTimeDiff('tick-time');
     }
 
     addTarget(target) {

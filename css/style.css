@@ -1,0 +1,38 @@
+body {
+    background: url('../images/bg.webp') repeat;
+    color: #ccc;
+}
+
+h1, h2 {
+    text-align: center;
+}
+
+#controls1 {
+    margin: 1rem auto;
+    text-align: center;
+}
+
+#canvas-div {
+    margin: 1rem auto;
+    text-align: center;
+}
+
+#footer {
+    margin: 1rem auto;
+    text-align: center;
+}
+
+#field {
+    border: 5px solid #3bc63b;
+    border-radius: 5px;
+    background: rgb(2, 116, 4);
+}
+
+#debug-info {
+    margin: 1rem auto;
+    text-align: center;
+}
+
+#footer a {
+    color: #fff;
+}

@@ -18,8 +18,6 @@ class Bee extends Movable {
     }
 
     addDistance(targetName) {
-        this.distances[targetName] = 0;
-        this.targetName = targetName;
     }
 
     removeDistance(targetName) {
@@ -76,6 +74,10 @@ class Bee extends Movable {
                 this.determineTarget();
 
                 return true;
+            } else if (this.distances[targetCollisions.name] === undefined) {
+                this.angle += Math.PI
+                this.distances[targetCollisions.name] = 0;
+                this.targetName = this.hiveName;
             } else {
                 this.distances[targetCollisions.name] = 0;
             }
@@ -98,6 +100,21 @@ class Bee extends Movable {
                 >= this.screamRadius2
             ) {
                 return
+            }
+
+            if (this.targetName === undefined) {
+                let eventKeys = Object.keys(event.detail.distances);
+                let thisKeys = Object.keys(this.distances);
+                if (eventKeys.length > thisKeys.length) {
+                    for (let i = 0; i < eventKeys.length; i++) {
+                        if (this.distances[eventKeys[i]] === undefined) {
+                            this.distances[eventKeys[i]] = 0;
+                            this.targetName = eventKeys[i];
+
+                            return;
+                        }
+                    }
+                }
             }
 
             if (event.detail.distances[this.targetName] + this.screamRadius < this.distances[this.targetName]) {
@@ -125,23 +142,37 @@ class Bee extends Movable {
     render() {
         const ctx = document.getElementById("field").getContext("2d");
 
+        if (Config.withImages()) {
+            this.drawBeeWithImages(ctx);
+        } else {
+            this.drawBee(ctx);
+        }
+    }
+
+    drawBeeWithImages(ctx) {
+        let size = 10;
+        let halfSize = size / 2;
+        ctx.drawImage(Images.get('bee'), 0, 0, 16, 16, this.x - halfSize, this.y - halfSize, size, size);
+    }
+
+    drawBee(ctx) {
         ctx.fillStyle = "rgb(250,230,100)";
         if (this.targetName === this.hiveName) {
             ctx.fillStyle = "rgb(232,102,8)";
         }
-        if (this.targetName === 't1') {
-            ctx.fillStyle = "rgb(229,216,169)";
-        }
-        if (this.targetName === 't2') {
-            ctx.fillStyle = "rgb(97,189,50)";
-        }
-        if (this.targetName === 't3') {
+        if (this.targetName === 'h1') {
             ctx.fillStyle = "rgb(142,31,173)";
         }
-        if (this.targetName === 't4') {
+        if (this.targetName === 'h2') {
+            ctx.fillStyle = "rgb(97,189,50)";
+        }
+        if (this.targetName === 'h3') {
+            ctx.fillStyle = "rgb(229,216,169)";
+        }
+        if (this.targetName === 'h4') {
             ctx.fillStyle = "rgb(38,167,176)";
         }
-        if (this.targetName === 't5') {
+        if (this.targetName === 'h5') {
             ctx.fillStyle = "rgb(127,105,133)";
         }
 

@@ -4,6 +4,11 @@
     <meta charset="UTF-8">
     <title>Swarm intelligence</title>
 
+    <link rel="stylesheet" href="css/style.css" />
+
+    <script src="js/Debug.js"></script>
+    <script src="js/Sounds.js"></script>
+    <script src="js/Images.js"></script>
     <script src="js/Config.js"></script>
     <script src="js/Objects/Wall.js"></script>
     <script src="js/Objects/Movable.js"></script>
@@ -15,9 +20,20 @@
     <script src="js/Start.js"></script>
 
 </head>
-<body style="background: #222222; color: #ccc;">
-<button tabindex="1" id="start">Start</button> <button tabindex="2" id="stop">Stop</button>
+<body>
+<h1>Swarm Intelligence</h1>
+<h2>Try yourself in AI games</h2>
+<div id="controls1"><button tabindex="1" id="start">Start</button> <button tabindex="2" id="stop">Stop</button></div>
+
 <div id="canvas-div">
+</div>
+
+<div id="debug-info">
+    <span>Tick(ms): <span id="tick-time"></span></span>
+</div>
+
+<div id="footer">
+    <a href="https://github.com/sgaluzin">GitHub</a> <a href="https://www.youtube.com/@sgaluzin">Youtube</a> <a href="https://www.linkedin.com/in/sgaluzin/">LinkedIn</a>
 </div>
 </body>
 </html>
