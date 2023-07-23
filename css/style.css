@@ -1,6 +1,10 @@
 body {
-    background: #222222;
+    background: url('../images/bg.webp') repeat;
     color: #ccc;
+}
+
+h1, h2 {
+    text-align: center;
 }
 
 #controls1 {
@@ -11,4 +15,13 @@ body {
 #canvas-div {
     margin: 1rem auto;
     text-align: center;
+}
+
+#footer {
+    margin: 1rem auto;
+    text-align: center;
+}
+
+#footer a {
+    color: #fff;
 }
