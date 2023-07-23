@@ -22,7 +22,7 @@ class Config {
     }
 
     static targetHealth() {
-        return 1000;
+        return 500;
     }
 
     static beeRandomAngle() {

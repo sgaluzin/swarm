@@ -1,0 +1,14 @@
+body {
+    background: #222222;
+    color: #ccc;
+}
+
+#controls1 {
+    margin: 1rem auto;
+    text-align: center;
+}
+
+#canvas-div {
+    margin: 1rem auto;
+    text-align: center;
+}
