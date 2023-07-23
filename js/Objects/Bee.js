@@ -108,8 +108,7 @@ class Bee extends Movable {
                 if (eventKeys.length > thisKeys.length) {
                     for (let i = 0; i < eventKeys.length; i++) {
                         if (this.distances[eventKeys[i]] === undefined) {
-                            this.angle = Math.atan2(diffY, diffX);
-                            this.distances[eventKeys[i]] = event.detail.distances[eventKeys[i]] + this.screamRadius;
+                            this.distances[eventKeys[i]] = 0;
                             this.targetName = eventKeys[i];
 
                             return;
