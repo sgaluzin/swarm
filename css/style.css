@@ -22,6 +22,12 @@ h1, h2 {
     text-align: center;
 }
 
+#field {
+    border: 5px solid #3bc63b;
+    border-radius: 5px;
+    background: rgb(2, 116, 4);
+}
+
 #footer a {
     color: #fff;
 }
