@@ -75,13 +75,13 @@ class Target extends Movable {
             ctx.fillStyle = "rgb(232,102,8)";
         }
         if (this.name === 'h1') {
-            ctx.fillStyle = "rgb(229,216,169)";
+            ctx.fillStyle = "rgb(142,31,173)";
         }
         if (this.name === 'h2') {
             ctx.fillStyle = "rgb(97,189,50)";
         }
         if (this.name === 'h3') {
-            ctx.fillStyle = "rgb(142,31,173)";
+            ctx.fillStyle = "rgb(229,216,169)";
         }
         if (this.name === 'h4') {
             ctx.fillStyle = "rgb(38,167,176)";
