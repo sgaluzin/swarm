@@ -146,5 +146,9 @@ class Bee extends Movable {
         }
 
         ctx.fillRect(this.x - 1.5, this.y - 1.5, 3, 3);
+
+        // let size = 10;
+        // let halfSize = size / 2;
+        // ctx.drawImage(Images.get('bee'), 0, 0, 16, 16, this.x - halfSize, this.y - halfSize, size, size);
     }
 }

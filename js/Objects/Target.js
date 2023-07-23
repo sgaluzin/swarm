@@ -39,14 +39,29 @@ class Target extends Movable{
     render() {
         const ctx = document.getElementById("field").getContext("2d");
 
-        const radius = this.radius;
-
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, radius, 0, 2 * Math.PI, false);
-
         if (this.name === Config.hiveName()) {
-            ctx.fillStyle = "rgb(232,102,8)";
+            let size = this.radius * 2;
+            ctx.drawImage(Images.get('beeHive'), 0, 0, 32, 32, this.x - this.radius, this.y - this.radius, size, size);
+        } else {
+            let size = this.radius * 2;
+            ctx.drawImage(Images.get('honeyComb'), 0, 0, 32, 32, this.x - this.radius, this.y - this.radius, size, size);
         }
+
+        let fontSize = 12;
+        ctx.font = fontSize + "px serif";
+        ctx.fillStyle = "rgba(255, 255, 255, 1)";
+        ctx.fillText(this.name, this.x, this.y + fontSize * 2);
+
+        if (this.name !== 'hive') {
+            ctx.fillStyle = "rgba(255, 255, 255, 1)";
+            ctx.fillText(this.health, this.x, this.y + fontSize * 3);
+        }
+    }
+
+    drawTarget(ctx) {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius, 0, 2 * Math.PI, false);
+
         if (this.name === 't1') {
             ctx.fillStyle = "rgb(229,216,169)";
         }
@@ -64,15 +79,5 @@ class Target extends Movable{
         }
 
         ctx.fill();
-
-        let fontSize = 12;
-        ctx.font = fontSize + "px serif";
-        ctx.fillStyle = "rgba(255, 255, 255, 1)";
-        ctx.fillText(this.name, this.x, this.y + fontSize * 2);
-
-        if (this.name !== 'hive') {
-            ctx.fillStyle = "rgba(255, 255, 255, 1)";
-            ctx.fillText(this.health, this.x, this.y + this.radius + fontSize * 3);
-        }
     }
 }

@@ -31,6 +31,8 @@ function createAnimation() {
     window.animation = new Animation(field);
 }
 
+Images.load();
+
 document.addEventListener("DOMContentLoaded", function () {
     createCanvas();
     createAnimation();
