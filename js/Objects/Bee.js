@@ -125,23 +125,37 @@ class Bee extends Movable {
     render() {
         const ctx = document.getElementById("field").getContext("2d");
 
+        if (Config.withImages()) {
+            this.drawBeeWithImages(ctx);
+        } else {
+            this.drawBee(ctx);
+        }
+    }
+
+    drawBeeWithImages(ctx) {
+        let size = 10;
+        let halfSize = size / 2;
+        ctx.drawImage(Images.get('bee'), 0, 0, 16, 16, this.x - halfSize, this.y - halfSize, size, size);
+    }
+
+    drawBee(ctx) {
         ctx.fillStyle = "rgb(250,230,100)";
         if (this.targetName === this.hiveName) {
             ctx.fillStyle = "rgb(232,102,8)";
         }
-        if (this.targetName === 't1') {
+        if (this.targetName === 'h1') {
             ctx.fillStyle = "rgb(229,216,169)";
         }
-        if (this.targetName === 't2') {
+        if (this.targetName === 'h2') {
             ctx.fillStyle = "rgb(97,189,50)";
         }
-        if (this.targetName === 't3') {
+        if (this.targetName === 'h3') {
             ctx.fillStyle = "rgb(142,31,173)";
         }
-        if (this.targetName === 't4') {
+        if (this.targetName === 'h4') {
             ctx.fillStyle = "rgb(38,167,176)";
         }
-        if (this.targetName === 't5') {
+        if (this.targetName === 'h5') {
             ctx.fillStyle = "rgb(127,105,133)";
         }
 

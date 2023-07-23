@@ -40,4 +40,8 @@ class Config {
     static hiveName() {
         return 'hive';
     }
+
+    static withImages() {
+        return false;
+    }
 }

@@ -13,7 +13,7 @@ function createTarget(e) {
     const x = e.clientX - rect.left
     const y = e.clientY - rect.top
 
-    let targetName = 't' + window.animation.field.statics.length;
+    let targetName = 'h' + window.animation.field.statics.length;
     let target = new Target(targetName, x, y);
     window.animation.addTarget(target)
 }
@@ -30,6 +30,8 @@ function createAnimation() {
 
     window.animation = new Animation(field);
 }
+
+Images.load();
 
 document.addEventListener("DOMContentLoaded", function () {
     createCanvas();
