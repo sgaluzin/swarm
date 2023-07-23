@@ -36,4 +36,8 @@ class Config {
     static movableSpeed() {
         return 3;
     }
+
+    static hiveName() {
+        return 'hive';
+    }
 }

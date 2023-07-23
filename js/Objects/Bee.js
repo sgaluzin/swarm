@@ -38,7 +38,6 @@ class Bee extends Movable {
         }
 
         if (this.targetName === this.hiveName || this.targetName === undefined) {
-            let min = 100000000;
             let targetName = targets.reduce((prev, curr) => {
                 return this.distances[prev] < this.distances[curr] && prev !== this.hiveName ? prev : curr;
             }, targets[0]);
@@ -128,15 +127,24 @@ class Bee extends Movable {
 
         ctx.fillStyle = "rgb(250,230,100)";
         if (this.targetName === this.hiveName) {
-            ctx.fillStyle = "rgba(100, 250, 100, 1)";
+            ctx.fillStyle = "rgb(232,102,8)";
         }
-        if (this.targetName === 'b') {
-            ctx.fillStyle = "rgba(100, 100, 250, 1)";
+        if (this.targetName === 't1') {
+            ctx.fillStyle = "rgb(229,216,169)";
         }
-        if (this.targetName === 'c') {
-            ctx.fillStyle = "rgba(250, 100, 100, 1)";
+        if (this.targetName === 't2') {
+            ctx.fillStyle = "rgb(97,189,50)";
+        }
+        if (this.targetName === 't3') {
+            ctx.fillStyle = "rgb(142,31,173)";
+        }
+        if (this.targetName === 't4') {
+            ctx.fillStyle = "rgb(38,167,176)";
+        }
+        if (this.targetName === 't5') {
+            ctx.fillStyle = "rgb(127,105,133)";
         }
 
-        ctx.fillRect(this.x, this.y, 2, 2);
+        ctx.fillRect(this.x - 1.5, this.y - 1.5, 3, 3);
     }
 }
