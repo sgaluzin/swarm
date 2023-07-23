@@ -8,18 +8,10 @@ class Animation {
 
     start() {
         this.interval = setInterval(this.tick.bind(this), Config.tickDelay());
-        const audio = document.getElementById("audio");
-        audio.volume = 0.2;
-        audio.play();
-        audio.ended(() => {
-
-        });
     }
 
     stop() {
         clearInterval(this.interval);
-        const audio = document.getElementById("audio");
-        audio.pause();
     }
 
     tick() {

@@ -32,16 +32,23 @@ function createAnimation() {
 }
 
 Images.load();
+Sounds.create();
 
 document.addEventListener("DOMContentLoaded", function () {
-    createCanvas();
-    createAnimation();
+        createCanvas();
+        createAnimation();
 
-    document.getElementById('start').onclick = function () {
-        window.animation.start();
-    };
+        document.getElementById('start').onclick = function () {
+            window.animation.start();
 
-    document.getElementById('stop').onclick = function () {
-        window.animation.stop();
-    };
-});
+            Sounds.play()
+        };
+
+        document.getElementById('stop').onclick = function () {
+            window.animation.stop();
+
+            Sounds.pause()
+        };
+    }
+)
+;
