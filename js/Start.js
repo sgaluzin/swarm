@@ -35,20 +35,19 @@ Images.load();
 Sounds.create();
 
 document.addEventListener("DOMContentLoaded", function () {
-        createCanvas();
-        createAnimation();
+    Config.init();
+    createCanvas();
+    createAnimation();
 
-        document.getElementById('start').onclick = function () {
-            window.animation.start();
+    document.getElementById('start').onclick = function () {
+        window.animation.start();
 
-            Sounds.play()
-        };
+        Sounds.play()
+    };
 
-        document.getElementById('stop').onclick = function () {
-            window.animation.stop();
+    document.getElementById('stop').onclick = function () {
+        window.animation.stop();
 
-            Sounds.pause()
-        };
-    }
-)
-;
+        Sounds.pause()
+    };
+});

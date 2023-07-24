@@ -12,6 +12,16 @@ h1, h2 {
     text-align: center;
 }
 
+#controls2 {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    gap: 1rem;
+}
+#controls2 input[type=number] {
+    width: 5rem;
+}
+
 #canvas-div {
     margin: 1rem auto;
     text-align: center;
