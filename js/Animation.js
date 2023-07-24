@@ -15,12 +15,18 @@ class Animation {
     }
 
     tick() {
-        Debug.takeTime()
+        Debug.startTimer('tick-time');
+        Debug.startTimer('algorithm-time');
 
         this.field.doActivities();
+
+        Debug.stopTimer('algorithm-time');
+        Debug.startTimer('rendering-time');
+
         this.field.render();
 
-        Debug.pushTimeDiff('tick-time');
+        Debug.stopTimer('rendering-time');
+        Debug.stopTimer('tick-time');
     }
 
     addTarget(target) {
