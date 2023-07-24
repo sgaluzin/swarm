@@ -6,6 +6,9 @@
 
     <link rel="stylesheet" href="css/style.css" />
 
+
+    <script src="js/Events/EventDispatcher.js"></script>
+
     <script src="js/Debug.js"></script>
     <script src="js/Sounds.js"></script>
     <script src="js/Images.js"></script>
@@ -22,18 +25,34 @@
 </head>
 <body>
 <h1>Swarm Intelligence</h1>
-<h2>Try yourself in AI games</h2>
-<div id="controls1"><button tabindex="1" id="start">Start</button> <button tabindex="2" id="stop">Stop</button></div>
+
+<h2>Demonstration of swarm intelligence algorithm</h2>
+
+<div id="controls1">
+    <button tabindex="1" id="start">Start</button>
+    <button tabindex="2" id="stop">Stop</button>
+    <span>After "Start" click on the field</span>
+</div>
 
 <div id="canvas-div">
 </div>
 
 <div id="debug-info">
     <span>Tick(ms): <span id="tick-time"></span></span>
+
+    <span>Algorithm(ms): <span id="algorithm-time"></span></span>
+    <span>Rendering(ms): <span id="rendering-time"></span></span>
+</div>
+
+<div id="description">
+    Each bee are not so cleaver. It can only move and send messages to other bees. But when they work together it provides interesting results.
 </div>
 
 <div id="footer">
-    <a href="https://github.com/sgaluzin">GitHub</a> <a href="https://www.youtube.com/@sgaluzin">Youtube</a> <a href="https://www.linkedin.com/in/sgaluzin/">LinkedIn</a>
+    <a href="https://github.com/sgaluzin">GitHub</a>
+    <a href="https://www.youtube.com/@sgaluzin">Youtube</a>
+    <a href="https://www.linkedin.com/in/sgaluzin/">LinkedIn</a>
+    <a href="music.html">Music</a>
 </div>
 </body>
 </html>

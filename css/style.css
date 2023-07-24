@@ -33,6 +33,16 @@ h1, h2 {
     text-align: center;
 }
 
+
+#description {
+    margin: 1rem auto;
+    text-align: center;
+}
+
 #footer a {
     color: #fff;
+}
+
+#music {
+    background: #313131;
 }

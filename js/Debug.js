@@ -1,19 +1,19 @@
 class Debug {
-    static time;
+    static times = [];
 
-    static takeTime() {
+    static startTimer(elemId) {
         if (!Config.isDebug()) {
             return;
         }
 
-        this.time = (new Date()).getTime();
+        this.times[elemId] = (new Date()).getTime();
     }
 
-    static pushTimeDiff(elemId) {
+    static stopTimer(elemId) {
         if (!Config.isDebug()) {
             return;
         }
 
-        document.getElementById(elemId).innerText = ((new Date()).getTime() - this.time).toString();
+        document.getElementById(elemId).innerText = ((new Date()).getTime() - this.times[elemId]).toString();
     }
 }

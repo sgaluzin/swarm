@@ -87,7 +87,7 @@ class Bee extends Movable {
     }
 
     listenScream() {
-        document.addEventListener("scream", (event) => {
+        EventDispatcher.getInstance().addListener("scream", (event) => {
             if (event.detail.id === this.id) {
                 return;
             }
@@ -125,18 +125,17 @@ class Bee extends Movable {
     }
 
     scream() {
-        let event = new CustomEvent("scream",
-            {
-                detail: {
-                    id: this.id,
-                    x: this.x,
-                    y: this.y,
-                    screamRadius: this.screamRadius,
-                    distances: this.distances
-                }
+        let event = {
+            detail: {
+                id: this.id,
+                x: this.x,
+                y: this.y,
+                screamRadius: this.screamRadius,
+                distances: this.distances
             }
-        );
-        document.dispatchEvent(event);
+        };
+
+        EventDispatcher.getInstance().dispatch("scream", event)
     }
 
     render() {
