@@ -14,6 +14,7 @@ class EventDispatcher {
             console.error(`The event name must be a string, the given type is ${typeof event}`);
             return false;
         }
+
         if (typeof callbackName !== 'string') {
             console.error(`The callback name must be a string, the given type is ${typeof callbackName}`);
             return false;
@@ -24,6 +25,7 @@ class EventDispatcher {
                 listeners: []
             }
         }
+
 
         this.events[event].listeners.push({name: callbackName, callback: callback});
     }
