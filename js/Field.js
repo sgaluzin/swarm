@@ -22,6 +22,10 @@ class Field {
         });
     }
 
+    addWall(wall) {
+        this.walls.push(wall);
+    }
+
     getBorders() {
         return {
             xMin: 0,
