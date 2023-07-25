@@ -17,8 +17,6 @@ class Bee extends Movable {
         this.listenScream();
     }
 
-    destructor
-
     addDistance(targetName) {
     }
 
