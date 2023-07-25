@@ -117,9 +117,10 @@ class Bee extends Movable {
                 }
             }
 
+            let distance = Math.sqrt((diffX * diffX) + (diffY * diffY));
             if (event.detail.distances[this.targetName] + this.screamRadius() < this.distances[this.targetName]) {
                 this.angle = Math.atan2(diffY, diffX);
-                this.distances[this.targetName] = event.detail.distances[this.targetName] + this.screamRadius();
+                this.distances[this.targetName] = event.detail.distances[this.targetName] + distance;
             }
         }, this.id.toString());
     }

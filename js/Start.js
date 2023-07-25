@@ -28,6 +28,11 @@ function createAnimation() {
     let field = new Field();
     field.addSwarm(swarm);
 
+    let wall1 = new Wall(300, 180, 60, 360);
+    field.addWall(wall1);
+    let wall2 = new Wall(150, -10, 60, 300);
+    field.addWall(wall2);
+
     window.animation = new Animation(field);
 }
 
