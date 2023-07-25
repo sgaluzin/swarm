@@ -1,21 +1,22 @@
 class Config {
-    static screamRadiusProp = 50;
-    static beesAmountProp = 400;
+    static screamRadiusProp = 35;
+    static beesAmountProp = 1100;
     static beesAmountMaxProp = 2000;
     static beesAmountMinProp = 1;
     static init() {
         document.getElementById('bees-amount').value = this.beesAmount();
         document.getElementById('bees-amount').oninput = (event) => {
-            if (event.target.value > this.beesAmountMaxProp) {
+            let value = parseInt(event.target.value);
+            if (value > this.beesAmountMaxProp) {
                 this.beesAmountProp = this.beesAmountMaxProp;
             } else {
-                this.beesAmountProp = event.target.value;
+                this.beesAmountProp = value;
             }
 
-            if (event.target.value < this.beesAmountMinProp) {
+            if (value < this.beesAmountMinProp) {
                 this.beesAmountProp = this.beesAmountMinProp;
             } else {
-                this.beesAmountProp = event.target.value;
+                this.beesAmountProp = value;
             }
 
             //@todo accessing by zero key should be refactored
@@ -24,16 +25,17 @@ class Config {
 
         document.getElementById('scream-radius').value = this.screamRadiusProp;
         document.getElementById('scream-radius').oninput = (event) => {
-            if (event.target.value > this.screamRadiusProp) {
+            let value = parseInt(event.target.value);
+            if (value > this.screamRadiusProp) {
                 this.screamRadiusProp = this.beesAmountMaxProp;
             } else {
-                this.screamRadiusProp = event.target.value;
+                this.screamRadiusProp = value;
             }
 
-            if (event.target.value < this.beesAmountMinProp) {
+            if (value < this.beesAmountMinProp) {
                 this.screamRadiusProp = this.beesAmountMinProp;
             } else {
-                this.screamRadiusProp = event.target.value;
+                this.screamRadiusProp = value;
             }
         };
     }
@@ -49,7 +51,7 @@ class Config {
     }
 
     static tickDelay() {
-        return 50;
+        return 40;
     }
 
     static targetRadius() {
@@ -61,7 +63,7 @@ class Config {
     }
 
     static targetHealth() {
-        return 500;
+        return 1500;
     }
 
     static beeRandomAngle() {
