@@ -1,4 +1,5 @@
 class Config {
+
     static screamRadiusProp = 35;
     static beesAmountProp = 1100;
     static beesAmountMaxProp = 2000;
