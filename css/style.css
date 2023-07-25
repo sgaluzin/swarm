@@ -12,6 +12,16 @@ h1, h2 {
     text-align: center;
 }
 
+#controls2 {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    gap: 1rem;
+}
+#controls2 input[type=number] {
+    width: 5rem;
+}
+
 #canvas-div {
     margin: 1rem auto;
     text-align: center;
@@ -23,9 +33,9 @@ h1, h2 {
 }
 
 #field {
-    border: 5px solid #3bc63b;
+    border: 5px solid #db9c3c;
     border-radius: 5px;
-    background: rgb(2, 116, 4);
+    background: #444b3b;
 }
 
 #debug-info {

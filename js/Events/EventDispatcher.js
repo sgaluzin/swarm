@@ -5,7 +5,7 @@ class EventDispatcher {
         this.events = {};
     }
 
-    addListener(event, callback) {
+    addListener(event, callback, callbackName) {
         if (typeof callback !== 'function') {
             console.error(`The listener callback must be a function, the given type is ${typeof callback}`);
             return false;
@@ -15,23 +15,29 @@ class EventDispatcher {
             return false;
         }
 
+        if (typeof callbackName !== 'string') {
+            console.error(`The callback name must be a string, the given type is ${typeof callbackName}`);
+            return false;
+        }
+
         if (this.events[event] === undefined) {
             this.events[event] = {
                 listeners: []
             }
         }
 
-        this.events[event].listeners.push(callback);
+
+        this.events[event].listeners.push({name: callbackName, callback: callback});
     }
 
-    removeListener (event, callback) {
+    removeListener (event, callbackName) {
         if (this.events[event] === undefined) {
             console.error(`This event: ${event} does not exist`);
             return false;
         }
 
         this.events[event].listeners = this.events[event].listeners.filter(listener => {
-            return listener.toString() !== callback.toString();
+            return listener.name !== callbackName;
         });
     }
 
@@ -40,7 +46,7 @@ class EventDispatcher {
             console.error(`This event: ${event} does not exist`);
             return false;
         }    this.events[event].listeners.forEach((listener) => {
-            listener(details);
+            listener.callback(details);
         });
     }
 

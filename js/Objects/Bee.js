@@ -3,14 +3,14 @@ class Bee extends Movable {
     distances = {}
     hiveName;
     targetName;
-    screamRadius = Config.screamRadius();
-    screamRadius2 = this.screamRadius * this.screamRadius;
+    screamRadius;
 
     constructor(id, hiveName, distances, x, y) {
         super(x, y);
         this.id = id;
         this.hiveName = hiveName;
         this.distances = distances;
+        this.screamRadius = Config.screamRadius();
 
         this.determineTarget();
 
@@ -97,7 +97,7 @@ class Bee extends Movable {
             if (
                 (diffX * diffX)
                 + (diffY * diffY)
-                >= this.screamRadius2
+                >= this.screamRadius() * this.screamRadius()
             ) {
                 return
             }
@@ -117,11 +117,11 @@ class Bee extends Movable {
                 }
             }
 
-            if (event.detail.distances[this.targetName] + this.screamRadius < this.distances[this.targetName]) {
+            if (event.detail.distances[this.targetName] + this.screamRadius() < this.distances[this.targetName]) {
                 this.angle = Math.atan2(diffY, diffX);
-                this.distances[this.targetName] = event.detail.distances[this.targetName] + this.screamRadius;
+                this.distances[this.targetName] = event.detail.distances[this.targetName] + this.screamRadius();
             }
-        });
+        }, this.id.toString());
     }
 
     scream() {
@@ -130,7 +130,7 @@ class Bee extends Movable {
                 id: this.id,
                 x: this.x,
                 y: this.y,
-                screamRadius: this.screamRadius,
+                screamRadius: this.screamRadius(),
                 distances: this.distances
             }
         };

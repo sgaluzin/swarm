@@ -4,7 +4,10 @@
     <meta charset="UTF-8">
     <title>Swarm intelligence</title>
 
-    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/style.css"/>
+
+
+    <script src="js/Events/EventDispatcher.js"></script>
 
 
     <script src="js/Events/EventDispatcher.js"></script>
@@ -26,6 +29,7 @@
 <body>
 <h1>Swarm Intelligence</h1>
 
+
 <h2>Demonstration of swarm intelligence algorithm</h2>
 
 <div id="controls1">
@@ -34,6 +38,16 @@
     <span>After "Start" click on the field</span>
 </div>
 
+<div id="controls2">
+    <div>
+        <label for="bees-amount">Bees amount</label><br/>
+        <input type="number" id="bees-amount" min="1" max="2000"/>
+    </div>
+    <div>
+        <label for="scream-radius">Scream radius</label><br/>
+        <input type="number" id="scream-radius" min="1" max="2000"/>
+    </div>
+</div>
 <div id="canvas-div">
 </div>
 
@@ -45,7 +59,8 @@
 </div>
 
 <div id="description">
-    Each bee are not so cleaver. It can only move and send messages to other bees. But when they work together it provides interesting results.
+    Each bee are not so cleaver. It can only move and send messages to other bees. But when they work together it
+    provides an interesting results.
 </div>
 
 <div id="footer">

@@ -12,17 +12,37 @@ class Swarm {
 
     createBees(amount) {
         let targetsArr = [[this.hive.name, 0]];
+        let startId = this.bees.length;
+
 
         for (let i = 0; i < amount; i++) {
             this.bees.push(
                 new Bee(
-                    i,
+                    startId + i,
                     this.hive.name,
                     Object.fromEntries(targetsArr),
                     this.getRandomInt(Config.width()),
                     this.getRandomInt(Config.height())
                 )
             )
+        }
+    }
+
+    removeBees(amount) {
+        for (let i = 0; i < amount; i++) {
+            let bee = this.bees.pop();
+            //@todo add constant for event name
+            //@todo dont touch property directly
+            EventDispatcher.getInstance().removeListener('scream', bee.id.toString());
+        }
+    }
+
+    updateBeesAmount(amount) {
+        let diff = amount - this.bees.length;
+        if (diff > 0) {
+            this.createBees(diff);
+        } else if (diff < 0) {
+            this.removeBees(-diff);
         }
     }
 
