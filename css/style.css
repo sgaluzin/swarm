@@ -33,9 +33,9 @@ h1, h2 {
 }
 
 #field {
-    border: 5px solid #3bc63b;
+    border: 5px solid #db9c3c;
     border-radius: 5px;
-    background: rgb(2, 116, 4);
+    background: #444b3b;
 }
 
 #debug-info {
