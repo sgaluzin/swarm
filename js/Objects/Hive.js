@@ -1,15 +1,22 @@
 class Hive extends Target {
-    name;
     energy;
 
     constructor(name, x, y) {
         super(name, x, y);
 
-        this.energy = 1000;
+        this.energy = 1;
     }
 
-    isDied() {
+    isEmptyEnergy() {
+        return this.energy <= 0;
+    }
 
+    changePoints(points) {
+        if (this.energy + points > 0) {
+            this.energy += points
+        } else {
+            this.energy = 0;
+        }
     }
 
     render() {
@@ -25,6 +32,9 @@ class Hive extends Target {
         ctx.font = fontSize + "px serif";
         ctx.fillStyle = "rgba(255, 255, 255, 1)";
         ctx.fillText(this.name, this.x, this.y + fontSize * 2);
+
+        ctx.fillStyle = "rgba(255, 255, 255, 1)";
+        ctx.fillText('e:' + this.energy, this.x, this.y + fontSize * 3);
     }
 
     drawTargetWithImages(ctx) {
