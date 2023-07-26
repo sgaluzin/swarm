@@ -4,23 +4,22 @@ function createCanvas() {
     canvasElement.width = Config.width();
     canvasElement.height = Config.height();
     document.getElementById('canvas-div').appendChild(canvasElement);
-    canvasElement.addEventListener("click", createTarget, false);
+    canvasElement.addEventListener("click", createHoney, false);
 }
 
-function createTarget(e) {
+function createHoney(e) {
     const element = document.getElementById("field");
     const rect = element.getBoundingClientRect()
     const x = e.clientX - rect.left
     const y = e.clientY - rect.top
 
-    let targetName = 'h' + window.animation.field.statics.length;
-    let target = new Target(targetName, x, y);
-    window.animation.addTarget(target)
+    let honeyName = 'h' + window.animation.field.targets.length;
+    let honey = new Honey(honeyName, x, y);
+    window.animation.addHoney(honey)
 }
 
 function createAnimation() {
-    let hive = new Target(Config.hiveName(), 50, 150);
-
+    let hive = new Hive(Config.hiveName(), 50, 150);
 
     let swarm = new Swarm(hive);
     swarm.createBees(Config.beesAmount());
