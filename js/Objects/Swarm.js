@@ -31,6 +31,9 @@ class Swarm {
     removeBees(amount) {
         for (let i = 0; i < amount; i++) {
             let bee = this.bees.pop();
+            if (bee === undefined) {
+                return;
+            }
             //@todo add constant for event name
             //@todo dont touch property directly
             EventDispatcher.getInstance().removeListener('scream', bee.id.toString());
@@ -52,15 +55,19 @@ class Swarm {
         });
     }
 
-    doActivities(borders, targets, walls) {
+    doActivities(borders, collisions, walls) {
         this.bees.forEach((bee) => {
             bee.move();
             bee.checkBorders(borders);
-            targets.forEach((target) => {
-                if (bee.checkTargetCollision(target.getCollision())){
+            collisions.forEach((target) => {
+                if (bee.checkCollision(target.getCollision())){
                     //@todo need to avoid typeof
-                    if (typeof target === "Honey") {
+                    if (target.constructor.name === "Honey") {
                         target.decreaseHealth(1);
+                    }
+
+                    if (target.constructor.name === "Hive") {
+                        target.changePoints(1);
                     }
                 }
             });
@@ -68,7 +75,9 @@ class Swarm {
                 bee.checkWallBorders(wall.getWallBorders())
             })
             bee.scream();
-        })
+        });
+
+        this.hive.changePoints(-1);
     }
 
     render() {

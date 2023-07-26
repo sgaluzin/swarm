@@ -38,10 +38,17 @@ class Field {
 
         this.targets.forEach((object, index) => {
             object.doActivities(borders);
-            if (object.isDied()) {
+            //@todo avoid type checking
+            if (object.constructor.name === "Honey" && object.isDied()) {
                 this.swarm.removeHoney(object);
 
                 delete this.targets[index];
+            }
+
+            //@todo avoid type checking
+            if (object.constructor.name === "Hive" && object.isEmptyEnergy()) {
+                this.swarm.removeBees(1);
+                Config.setBeesAmount(this.swarm.bees.length);
             }
         })
     }

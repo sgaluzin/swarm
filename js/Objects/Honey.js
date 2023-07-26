@@ -24,16 +24,13 @@ class Honey extends Target {
             this.drawTarget(ctx);
         }
 
-
         let fontSize = 12;
         ctx.font = fontSize + "px serif";
         ctx.fillStyle = "rgba(255, 255, 255, 1)";
         ctx.fillText(this.name, this.x, this.y + fontSize * 2);
 
-        if (this.name !== 'hive') {
-            ctx.fillStyle = "rgba(255, 255, 255, 1)";
-            ctx.fillText(this.health, this.x, this.y + fontSize * 3);
-        }
+        ctx.fillStyle = "rgba(255, 255, 255, 1)";
+        ctx.fillText(this.health, this.x, this.y + fontSize * 3);
     }
 
     drawTargetWithImages(ctx) {
