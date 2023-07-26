@@ -17,6 +17,9 @@ class Bee extends Movable {
         this.listenScream();
     }
 
+    addDistance(targetName) {
+    }
+
     removeDistance(targetName) {
         delete this.distances[targetName];
         if (this.targetName === targetName) {
@@ -103,7 +106,7 @@ class Bee extends Movable {
             for (const targetName in event.detail.distances) {
                 //other bee know about a new target, create the new target, set distances accordingly
                 if (this.distances[targetName] === undefined) {
-                    this.distances[targetName] = 0;
+                    this.distances[targetName] = event.detail.distances[targetName] + distance;
 
                     //if bee haven't a target right now, set new target from other bee
                     if (this.targetName === undefined) {
