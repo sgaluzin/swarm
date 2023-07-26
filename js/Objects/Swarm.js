@@ -46,9 +46,9 @@ class Swarm {
         }
     }
 
-    removeTarget(target) {
+    removeHoney(honey) {
         this.bees.forEach((bee) => {
-            bee.removeDistance(target.name);
+            bee.removeDistance(honey.name);
         });
     }
 
@@ -58,7 +58,8 @@ class Swarm {
             bee.checkBorders(borders);
             targets.forEach((target) => {
                 if (bee.checkTargetCollision(target.getCollision())){
-                    if (target.name !== this.hive.name) {
+                    //@todo need to avoid typeof
+                    if (typeof target === "Honey") {
                         target.decreaseHealth(1);
                     }
                 }
