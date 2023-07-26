@@ -46,12 +46,6 @@ class Swarm {
         }
     }
 
-    addTarget(target) {
-        this.bees.forEach((bee) => {
-            bee.addDistance(target.name)
-        });
-    }
-
     removeTarget(target) {
         this.bees.forEach((bee) => {
             bee.removeDistance(target.name);
