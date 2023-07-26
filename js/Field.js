@@ -17,9 +17,6 @@ class Field {
 
     addTarget(target) {
         this.statics.push(target);
-        this.dynamics.forEach((swarm) => {
-            swarm.addTarget(target);
-        });
     }
 
     addWall(wall) {

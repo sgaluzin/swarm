@@ -5,11 +5,7 @@ class EventDispatcher {
         this.events = {};
     }
 
-    addListener(event, callback, callbackName) {
-        if (typeof callback !== 'function') {
-            console.error(`The listener callback must be a function, the given type is ${typeof callback}`);
-            return false;
-        }
+    addListener(event, callbackName, callback) {
         if (typeof event !== 'string') {
             console.error(`The event name must be a string, the given type is ${typeof event}`);
             return false;
@@ -20,17 +16,21 @@ class EventDispatcher {
             return false;
         }
 
+        if (typeof callback !== 'function') {
+            console.error(`The listener callback must be a function, the given type is ${typeof callback}`);
+            return false;
+        }
+
         if (this.events[event] === undefined) {
             this.events[event] = {
                 listeners: []
             }
         }
 
-
         this.events[event].listeners.push({name: callbackName, callback: callback});
     }
 
-    removeListener (event, callbackName) {
+    removeListener(event, callbackName) {
         if (this.events[event] === undefined) {
             console.error(`This event: ${event} does not exist`);
             return false;
@@ -41,11 +41,12 @@ class EventDispatcher {
         });
     }
 
-    dispatch (event, details) {
+    dispatch(event, details) {
         if (this.events[event] === undefined) {
             console.error(`This event: ${event} does not exist`);
             return false;
-        }    this.events[event].listeners.forEach((listener) => {
+        }
+        this.events[event].listeners.forEach((listener) => {
             listener.callback(details);
         });
     }
