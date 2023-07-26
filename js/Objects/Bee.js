@@ -87,7 +87,7 @@ class Bee extends Movable {
     }
 
     listenScream() {
-        EventDispatcher.getInstance().addListener("scream", (event) => {
+        EventDispatcher.getInstance().addListener("scream", this.id.toString(), (event) => {
             if (event.detail.id === this.id) {
                 return;
             }
@@ -102,27 +102,30 @@ class Bee extends Movable {
                 return
             }
 
-            if (this.targetName === undefined) {
-                let eventKeys = Object.keys(event.detail.distances);
-                let thisKeys = Object.keys(this.distances);
-                if (eventKeys.length > thisKeys.length) {
-                    for (let i = 0; i < eventKeys.length; i++) {
-                        if (this.distances[eventKeys[i]] === undefined) {
-                            this.distances[eventKeys[i]] = 0;
-                            this.targetName = eventKeys[i];
+            let distance = Math.sqrt((diffX * diffX) + (diffY * diffY));
+            for (const targetName in event.detail.distances) {
+                //other bee know about a new target, create the new target, set distances accordingly
+                if (this.distances[targetName] === undefined) {
+                    this.distances[targetName] = event.detail.distances[targetName] + distance;
 
-                            return;
-                        }
+                    //if bee haven't a target right now, set new target from other bee
+                    if (this.targetName === undefined) {
+                        this.targetName = targetName;
+                    }
+                }
+
+                //update distances to targets accordingly with information from other bee
+                if (
+                    this.distances[targetName] !== undefined
+                    && event.detail.distances[targetName] + this.screamRadius() < this.distances[targetName]
+                ) {
+                    this.distances[targetName] = event.detail.distances[targetName] + distance;
+                    if (targetName === this.targetName) {
+                        this.angle = Math.atan2(diffY, diffX);
                     }
                 }
             }
-
-            let distance = Math.sqrt((diffX * diffX) + (diffY * diffY));
-            if (event.detail.distances[this.targetName] + this.screamRadius() < this.distances[this.targetName]) {
-                this.angle = Math.atan2(diffY, diffX);
-                this.distances[this.targetName] = event.detail.distances[this.targetName] + distance;
-            }
-        }, this.id.toString());
+        });
     }
 
     scream() {
