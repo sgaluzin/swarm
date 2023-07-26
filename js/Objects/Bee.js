@@ -17,9 +17,6 @@ class Bee extends Movable {
         this.listenScream();
     }
 
-    addDistance(targetName) {
-    }
-
     removeDistance(targetName) {
         delete this.distances[targetName];
         if (this.targetName === targetName) {
