@@ -7,10 +7,12 @@ class Animation {
     }
 
     start() {
+        Config.startGame();
         this.interval = setInterval(this.tick.bind(this), Config.tickDelay());
     }
 
     stop() {
+        Config.stopGame()
         clearInterval(this.interval);
     }
 

@@ -4,18 +4,33 @@ function createCanvas() {
     canvasElement.width = Config.width();
     canvasElement.height = Config.height();
     document.getElementById('canvas-div').appendChild(canvasElement);
-    canvasElement.addEventListener("click", createHoney, false);
 }
 
 function createHoney(e) {
-    const element = document.getElementById("field");
-    const rect = element.getBoundingClientRect()
-    const x = e.clientX - rect.left
-    const y = e.clientY - rect.top
-
     let honeyName = 'h' + window.animation.field.targets.length;
-    let honey = new Honey(honeyName, x, y);
-    window.animation.addHoney(honey)
+    let honey = new Honey(
+        honeyName,
+        Helper.getInstance().getRandomInt(0, Config.width()),
+        Helper.getInstance().getRandomInt(0, Config.height())
+    );
+    window.animation.addHoney(honey);
+    document.getElementById('add-honey').disabled = true;
+    document.getElementById('add-honey-delay').innerText = Config.addHoneyDelay() + 's.';
+
+
+    let interval = setInterval(() => {
+        if (Config.pause()) {
+            return;
+        }
+
+        Config.addHoneyDelayDecrease();
+        document.getElementById('add-honey-delay').innerText = Config.addHoneyDelay() + 's.';
+        if (Config.addHoneyDelay() <= 0) {
+            Config.addHoneyDelaySetDefault();
+            document.getElementById('add-honey').disabled = false;
+            clearInterval(interval);
+        }
+    }, 1000);
 }
 
 function createAnimation() {
@@ -53,5 +68,9 @@ document.addEventListener("DOMContentLoaded", function () {
         window.animation.stop();
 
         Sounds.pause()
+    };
+
+    document.getElementById('add-honey').onclick = function() {
+        createHoney();
     };
 });

@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="css/style.css"/>
 
     <script src="js/Events/EventDispatcher.js"></script>
+    <script src="js/Helper.js"></script>
     <script src="js/Debug.js"></script>
     <script src="js/Sounds.js"></script>
     <script src="js/Images.js"></script>
@@ -32,7 +33,6 @@
 <div id="controls1">
     <button tabindex="1" id="start">Start</button>
     <button tabindex="2" id="stop">Stop</button>
-    <span>After "Start" click on the field</span>
 </div>
 
 <div id="controls2">
@@ -43,6 +43,10 @@
     <div>
         <label for="scream-radius">Scream radius</label><br/>
         <input type="number" id="scream-radius" min="1" max="2000"/>
+    </div>
+    <div>
+        <label for="scream-radius">Honey</label><br/>
+        <input type="button" id="add-honey" value="Add"/> <span id="add-honey-delay"></span>
     </div>
 </div>
 <div id="canvas-div">

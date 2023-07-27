@@ -6,23 +6,19 @@ class Swarm {
         this.hive = hive;
     }
 
-    getRandomInt(max) {
-        return Math.floor(Math.random() * max);
-    }
-
     createBees(amount) {
         let targetsArr = [[this.hive.name, 0]];
         let startId = this.bees.length;
 
-
+        let helper = Helper.getInstance();
         for (let i = 0; i < amount; i++) {
             this.bees.push(
                 new Bee(
                     startId + i,
                     this.hive.name,
                     Object.fromEntries(targetsArr),
-                    this.getRandomInt(Config.width()),
-                    this.getRandomInt(Config.height())
+                    helper.getRandomInt(0, Config.width()),
+                    helper.getRandomInt(0, Config.height())
                 )
             )
         }
@@ -67,6 +63,7 @@ class Swarm {
                     }
 
                     if (target.constructor.name === "Hive") {
+                        //@todo avoid hardcode
                         target.changePoints(1);
                     }
                 }
@@ -77,6 +74,7 @@ class Swarm {
             bee.scream();
         });
 
+        //@todo avoid hardcode
         this.hive.changePoints(-1);
     }
 

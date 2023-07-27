@@ -48,7 +48,7 @@ class Bee extends Movable {
     }
 
     move() {
-        this.angle += this.getRandomInt(-Config.beeRandomAngle(), Config.beeRandomAngle()) * Math.PI / 180;
+        this.angle += Helper.getInstance().getRandomInt(-Config.beeRandomAngle(), Config.beeRandomAngle()) * Math.PI / 180;
         super.move();
 
         for (let distance in this.distances) {
