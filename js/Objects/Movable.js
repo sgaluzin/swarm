@@ -8,15 +8,7 @@ class Movable {
         this.x = x;
         this.y = y;
         this.speed = Config.movableSpeed();
-        this.angle = this.getRandomAngle();
-    }
-
-    getRandomInt(min, max) {
-        return Math.floor(Math.random() * (max - min + 1) + min);
-    }
-
-    getRandomAngle() {
-        return Math.random() * Math.PI * 2;
+        this.angle = Helper.getInstance().getRandomAngle();
     }
 
     move() {

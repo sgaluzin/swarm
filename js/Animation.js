@@ -7,10 +7,12 @@ class Animation {
     }
 
     start() {
+        Config.startGame();
         this.interval = setInterval(this.tick.bind(this), Config.tickDelay());
     }
 
     stop() {
+        Config.stopGame()
         clearInterval(this.interval);
     }
 
@@ -29,7 +31,7 @@ class Animation {
         Debug.stopTimer('tick-time');
     }
 
-    addTarget(target) {
-        this.field.addTarget(target)
+    addHoney(honey) {
+        this.field.addHoney(honey)
     }
 }

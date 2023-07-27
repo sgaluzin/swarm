@@ -48,7 +48,7 @@ class Bee extends Movable {
     }
 
     move() {
-        this.angle += this.getRandomInt(-Config.beeRandomAngle(), Config.beeRandomAngle()) * Math.PI / 180;
+        this.angle += Helper.getInstance().getRandomInt(-Config.beeRandomAngle(), Config.beeRandomAngle()) * Math.PI / 180;
         super.move();
 
         for (let distance in this.distances) {
@@ -58,12 +58,11 @@ class Bee extends Movable {
         }
     }
 
-    checkTargetCollision(targetCollisions) {
+    checkCollision(targetCollisions) {
+        let diffX = this.x - targetCollisions.x;
+        let diffY = this.y - targetCollisions.y;
         if (
-            (this.x - targetCollisions.x) * (this.x - targetCollisions.x)
-            + (this.y - targetCollisions.y) * (this.y - targetCollisions.y)
-
-            <= targetCollisions.r * targetCollisions.r
+            diffX * diffX + diffY * diffY <= targetCollisions.r * targetCollisions.r
         ) {
             if (this.targetName === targetCollisions.name) {
                 this.angle += Math.PI
@@ -89,12 +88,13 @@ class Bee extends Movable {
                 return;
             }
 
+            let screamRadius = this.screamRadius();
             let diffX = event.detail.x - this.x;
             let diffY = event.detail.y - this.y;
             if (
                 (diffX * diffX)
                 + (diffY * diffY)
-                >= this.screamRadius() * this.screamRadius()
+                >= screamRadius * screamRadius
             ) {
                 return
             }
@@ -114,7 +114,7 @@ class Bee extends Movable {
                 //update distances to targets accordingly with information from other bee
                 if (
                     this.distances[targetName] !== undefined
-                    && event.detail.distances[targetName] + this.screamRadius() < this.distances[targetName]
+                    && event.detail.distances[targetName] + screamRadius < this.distances[targetName]
                 ) {
                     this.distances[targetName] = event.detail.distances[targetName] + distance;
                     if (targetName === this.targetName) {

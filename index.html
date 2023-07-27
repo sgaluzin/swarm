@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="css/style.css"/>
 
     <script src="js/Events/EventDispatcher.js"></script>
+    <script src="js/Helper.js"></script>
     <script src="js/Debug.js"></script>
     <script src="js/Sounds.js"></script>
     <script src="js/Images.js"></script>
@@ -14,6 +15,8 @@
     <script src="js/Objects/Wall.js"></script>
     <script src="js/Objects/Movable.js"></script>
     <script src="js/Objects/Target.js"></script>
+    <script src="js/Objects/Hive.js"></script>
+    <script src="js/Objects/Honey.js"></script>
     <script src="js/Objects/Bee.js"></script>
     <script src="js/Objects/Swarm.js"></script>
     <script src="js/Field.js"></script>
@@ -30,7 +33,6 @@
 <div id="controls1">
     <button tabindex="1" id="start">Start</button>
     <button tabindex="2" id="stop">Stop</button>
-    <span>After "Start" click on the field</span>
 </div>
 
 <div id="controls2">
@@ -41,6 +43,10 @@
     <div>
         <label for="scream-radius">Scream radius</label><br/>
         <input type="number" id="scream-radius" min="1" max="2000"/>
+    </div>
+    <div>
+        <label for="scream-radius">Next honey</label> (<span id="add-honey-delay-interval"></span>)<br/>
+        <input type="button" id="add-honey" value="Add"/> <span id="add-honey-delay"></span>
     </div>
 </div>
 <div id="canvas-div">

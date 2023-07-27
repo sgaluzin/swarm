@@ -1,8 +1,8 @@
 class Field {
     width;
     height;
-    dynamics = [];
-    statics = [];
+    swarm;
+    targets = [];
     walls = [];
 
     constructor() {
@@ -11,12 +11,12 @@ class Field {
     }
 
     addSwarm(swarm) {
-        this.dynamics.push(swarm);
-        this.statics.push(swarm.hive);
+        this.swarm = swarm;
+        this.targets.push(swarm.hive);
     }
 
-    addTarget(target) {
-        this.statics.push(target);
+    addHoney(honey) {
+        this.targets.push(honey);
     }
 
     addWall(wall) {
@@ -34,18 +34,21 @@ class Field {
 
     doActivities() {
         let borders = this.getBorders();
-        this.dynamics.forEach((dynamic) => {
-            dynamic.doActivities(borders, this.statics, this.walls);
-        })
+        this.swarm.doActivities(borders, this.targets, this.walls);
 
-        this.statics.forEach((object, index) => {
+        this.targets.forEach((object, index) => {
             object.doActivities(borders);
-            if (object.isDied()) {
-                this.dynamics.forEach((dynamic) => {
-                    dynamic.removeTarget(object);
-                })
+            //@todo avoid type checking
+            if (object.constructor.name === "Honey" && object.isDied()) {
+                this.swarm.removeHoney(object);
 
-                delete this.statics[index];
+                delete this.targets[index];
+            }
+
+            //@todo avoid type checking
+            if (object.constructor.name === "Hive" && object.isEmptyEnergy()) {
+                this.swarm.removeBees(1);
+                Config.setBeesAmount(this.swarm.bees.length);
             }
         })
     }
@@ -55,11 +58,9 @@ class Field {
 
         ctx.clearRect(0, 0, this.width, this.height);
 
-        this.dynamics.forEach((object) => {
-            object.render();
-        })
+        this.swarm.render();
 
-        this.statics.forEach((object) => {
+        this.targets.forEach((object) => {
             object.render();
         })
 

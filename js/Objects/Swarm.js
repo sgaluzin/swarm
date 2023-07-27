@@ -6,23 +6,19 @@ class Swarm {
         this.hive = hive;
     }
 
-    getRandomInt(max) {
-        return Math.floor(Math.random() * max);
-    }
-
     createBees(amount) {
         let targetsArr = [[this.hive.name, 0]];
         let startId = this.bees.length;
 
-
+        let helper = Helper.getInstance();
         for (let i = 0; i < amount; i++) {
             this.bees.push(
                 new Bee(
                     startId + i,
                     this.hive.name,
                     Object.fromEntries(targetsArr),
-                    this.getRandomInt(Config.width()),
-                    this.getRandomInt(Config.height())
+                    helper.getRandomInt(0, Config.width()),
+                    helper.getRandomInt(0, Config.height())
                 )
             )
         }
@@ -31,6 +27,9 @@ class Swarm {
     removeBees(amount) {
         for (let i = 0; i < amount; i++) {
             let bee = this.bees.pop();
+            if (bee === undefined) {
+                return;
+            }
             //@todo add constant for event name
             //@todo dont touch property directly
             EventDispatcher.getInstance().removeListener('scream', bee.id.toString());
@@ -46,20 +45,26 @@ class Swarm {
         }
     }
 
-    removeTarget(target) {
+    removeHoney(honey) {
         this.bees.forEach((bee) => {
-            bee.removeDistance(target.name);
+            bee.removeDistance(honey.name);
         });
     }
 
-    doActivities(borders, targets, walls) {
+    doActivities(borders, collisions, walls) {
         this.bees.forEach((bee) => {
             bee.move();
             bee.checkBorders(borders);
-            targets.forEach((target) => {
-                if (bee.checkTargetCollision(target.getCollision())){
-                    if (target.name !== this.hive.name) {
+            collisions.forEach((target) => {
+                if (bee.checkCollision(target.getCollision())){
+                    //@todo need to avoid typeof
+                    if (target.constructor.name === "Honey") {
                         target.decreaseHealth(1);
+                    }
+
+                    if (target.constructor.name === "Hive") {
+                        //@todo avoid hardcode
+                        target.changePoints(1);
                     }
                 }
             });
@@ -67,7 +72,10 @@ class Swarm {
                 bee.checkWallBorders(wall.getWallBorders())
             })
             bee.scream();
-        })
+        });
+
+        //@todo avoid hardcode
+        this.hive.changePoints(-1);
     }
 
     render() {

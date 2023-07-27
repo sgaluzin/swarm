@@ -4,41 +4,78 @@ class Config {
     static beesAmountProp = 1100;
     static beesAmountMaxProp = 2000;
     static beesAmountMinProp = 1;
+    static addHoneyDelayDefault = 60;
+    static addHoneyDelayProp = this.addHoneyDelayDefault;
+    static addHoneyDelayIntervalDefault = 40;
+    static addHoneyDelayIntervalProp = this.addHoneyDelayIntervalDefault;
+    static pauseProp = true;
+
     static init() {
         document.getElementById('bees-amount').value = this.beesAmount();
         document.getElementById('bees-amount').oninput = (event) => {
             let value = parseInt(event.target.value);
             if (value > this.beesAmountMaxProp) {
-                this.beesAmountProp = this.beesAmountMaxProp;
-            } else {
-                this.beesAmountProp = value;
+                value = this.beesAmountMaxProp;
             }
-
             if (value < this.beesAmountMinProp) {
-                this.beesAmountProp = this.beesAmountMinProp;
-            } else {
-                this.beesAmountProp = value;
+                value = this.beesAmountMinProp;
             }
+            this.beesAmountProp = value;
 
-            //@todo accessing by zero key should be refactored
-            window.animation.field.dynamics[0].updateBeesAmount(this.beesAmountProp);
+            window.animation.field.swarm.updateBeesAmount(this.beesAmountProp);
         };
 
         document.getElementById('scream-radius').value = this.screamRadiusProp;
         document.getElementById('scream-radius').oninput = (event) => {
             let value = parseInt(event.target.value);
             if (value > this.screamRadiusProp) {
-                this.screamRadiusProp = this.beesAmountMaxProp;
-            } else {
-                this.screamRadiusProp = value;
+                value = this.beesAmountMaxProp;
+            }
+            if (value < this.beesAmountMinProp) {
+                value = this.beesAmountMinProp;
             }
 
-            if (value < this.beesAmountMinProp) {
-                this.screamRadiusProp = this.beesAmountMinProp;
-            } else {
-                this.screamRadiusProp = value;
-            }
+            this.screamRadiusProp = value;
         };
+    }
+
+    static setBeesAmount(beesAmount) {
+        this.beesAmountProp = beesAmount
+        document.getElementById('bees-amount').value = this.beesAmount();
+    }
+
+    static addHoneyDelay() {
+        return this.addHoneyDelayProp
+    }
+    static addHoneyDelayDecrease() {
+        this.addHoneyDelayProp -= 1;
+    }
+
+    static addHoneyDelaySetDefault() {
+        this.addHoneyDelayProp = this.addHoneyDelayDefault;
+    }
+
+    static addHoneyDelayInterval() {
+        return this.addHoneyDelayIntervalProp
+    }
+    static addHoneyDelayIntervalDecrease() {
+        this.addHoneyDelayIntervalProp -= 1;
+    }
+
+    static addHoneyDelayIntervalSetDefault() {
+        this.addHoneyDelayIntervalProp = this.addHoneyDelayIntervalDefault;
+    }
+
+    static pause() {
+        return this.pauseProp;
+    }
+
+    static startGame() {
+        this.pauseProp = false;
+    }
+
+    static stopGame() {
+        this.pauseProp = true;
     }
 
     static width() {
