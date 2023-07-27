@@ -4,6 +4,9 @@ class Config {
     static beesAmountProp = 1100;
     static beesAmountMaxProp = 2000;
     static beesAmountMinProp = 1;
+    static addHoneyDelayProp = 40;
+    static pauseProp = true;
+
     static init() {
         document.getElementById('bees-amount').value = this.beesAmount();
         document.getElementById('bees-amount').oninput = (event) => {
@@ -36,6 +39,29 @@ class Config {
     static setBeesAmount(beesAmount) {
         this.beesAmountProp = beesAmount
         document.getElementById('bees-amount').value = this.beesAmount();
+    }
+
+    static addHoneyDelay() {
+        return this.addHoneyDelayProp
+    }
+    static addHoneyDelayDecrease() {
+        this.addHoneyDelayProp -= 1;
+    }
+
+    static addHoneyDelaySetDefault() {
+        this.addHoneyDelayProp = 40;
+    }
+
+    static pause() {
+        return this.pauseProp;
+    }
+
+    static startGame() {
+        this.pauseProp = false;
+    }
+
+    static stopGame() {
+        this.pauseProp = true;
     }
 
     static width() {

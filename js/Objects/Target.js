@@ -8,7 +8,7 @@ class Target extends Movable {
 
         this.name = name;
         this.speed = Config.targetSpeed();
-        this.angle = this.getRandomAngle();
+        this.angle = Helper.getInstance().getRandomAngle();
 
         this.health = Config.targetHealth();
     }
