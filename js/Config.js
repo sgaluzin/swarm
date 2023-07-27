@@ -4,7 +4,10 @@ class Config {
     static beesAmountProp = 1100;
     static beesAmountMaxProp = 2000;
     static beesAmountMinProp = 1;
-    static addHoneyDelayProp = 40;
+    static addHoneyDelayDefault = 60;
+    static addHoneyDelayProp = this.addHoneyDelayDefault;
+    static addHoneyDelayIntervalDefault = 40;
+    static addHoneyDelayIntervalProp = this.addHoneyDelayIntervalDefault;
     static pauseProp = true;
 
     static init() {
@@ -49,7 +52,18 @@ class Config {
     }
 
     static addHoneyDelaySetDefault() {
-        this.addHoneyDelayProp = 40;
+        this.addHoneyDelayProp = this.addHoneyDelayDefault;
+    }
+
+    static addHoneyDelayInterval() {
+        return this.addHoneyDelayIntervalProp
+    }
+    static addHoneyDelayIntervalDecrease() {
+        this.addHoneyDelayIntervalProp -= 1;
+    }
+
+    static addHoneyDelayIntervalSetDefault() {
+        this.addHoneyDelayIntervalProp = this.addHoneyDelayIntervalDefault;
     }
 
     static pause() {
